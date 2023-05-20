@@ -12,16 +12,4 @@ public class PlayerController : MonoBehaviour
         interactionHandler = GetComponent<InteractionHandler>();
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        interactionHandler.enabled = true;
-        currentInteractionObject = other.gameObject;
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        interactionHandler.enabled = false;
-        currentInteractionObject = null;
-    }
-
 }

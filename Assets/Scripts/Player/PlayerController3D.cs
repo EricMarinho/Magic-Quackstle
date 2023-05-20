@@ -15,4 +15,16 @@ public class PlayerController3D : PlayerController
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        interactionHandler.enabled = true;
+        currentInteractionObject = other.gameObject;
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        interactionHandler.enabled = false;
+        currentInteractionObject = null;
+    }
 }
