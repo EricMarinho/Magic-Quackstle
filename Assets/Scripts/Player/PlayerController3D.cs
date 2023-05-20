@@ -1,18 +1,19 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerController3D : MonoBehaviour
 {
-    // Start is called before the first frame update
+
     void Start()
     {
-        
+        HideAndLockMouse();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void HideAndLockMouse()
     {
-        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

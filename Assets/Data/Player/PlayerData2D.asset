@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a83a98831c9c09046b823bc29428cb9c, type: 3}
   m_Name: PlayerData2D
   m_EditorClassIdentifier: 
-  _speed: 3
+  _walkSpeed: 4
+  _runSpeed: 7
   _jumpForce: 8
