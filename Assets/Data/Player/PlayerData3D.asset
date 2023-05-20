@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PlayerData3D
   m_EditorClassIdentifier: 
   _speed: 4
-  _rotateSpeed: 1
+  _rotateSpeed: 7
   _mouseSensibility: 1
   _jumpForce: 7

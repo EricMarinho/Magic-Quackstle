@@ -4,16 +4,28 @@ using UnityEngine;
 
 public class MovePlayer3D : MonoBehaviour
 {
+    //Data
     [SerializeField] private PlayerData3D playerData3D;
+    
     private float axisHorizontal;
     private float axisVertical;
     private float mouseHorizontal;
     private float mouseVertical;
+    private bool isOnGround = true;
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
+        {
+            rb.AddForce(Vector3.up * playerData3D._jumpForce, ForceMode.Impulse);
+            isOnGround = false;
+        }
     }
 
     void FixedUpdate()
@@ -22,7 +34,7 @@ public class MovePlayer3D : MonoBehaviour
         axisVertical = Input.GetAxis("Vertical");
         mouseHorizontal = Input.GetAxis("Mouse X");
         mouseVertical = Input.GetAxis("Mouse Y");
-        
+
         Vector3 cameraRotation = new Vector3(-mouseVertical, mouseHorizontal, 0);
         Camera.main.transform.Rotate(cameraRotation * playerData3D._speed);
 
@@ -35,17 +47,19 @@ public class MovePlayer3D : MonoBehaviour
         Vector3 desiredMoveDirection = forward * axisVertical;
         rb.transform.Translate(desiredMoveDirection * playerData3D._speed * Time.deltaTime, Space.World);
         rb.transform.Translate(right * axisHorizontal * playerData3D._speed * Time.deltaTime, Space.World);
-        
+
         if (desiredMoveDirection != Vector3.zero)
         {
-            rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, Quaternion.LookRotation(desiredMoveDirection), playerData3D._rotateSpeed * Time.deltaTime);            
+            rb.transform.rotation = Quaternion.Slerp(rb.transform.rotation, Quaternion.LookRotation(desiredMoveDirection), playerData3D._rotateSpeed * Time.deltaTime);
         }
 
+    }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            rb.AddForce(Vector3.up * playerData3D._jumpForce, ForceMode.Impulse);
+            isOnGround = true;
         }
-
     }
 }
