@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb792d9650310e478406d7b42fd5f28, type: 3}
   m_Name: PlayerData3D
   m_EditorClassIdentifier: 
-  _speed: 4
+  _walkSpeed: 4
+  _runSpeed: 8
   _rotateSpeed: 7
   _mouseSensibility: 1
   _jumpForce: 7

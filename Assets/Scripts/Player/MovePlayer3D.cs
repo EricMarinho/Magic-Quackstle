@@ -11,12 +11,16 @@ public class MovePlayer3D : MonoBehaviour
     private float axisVertical;
     private float mouseHorizontal;
     private float mouseVertical;
+    private float currentSpeed;
+    private bool isRunning = false;
     private bool isOnGround = true;
+
     private Rigidbody rb;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        currentSpeed = playerData3D._walkSpeed;
     }
 
     private void Update()
@@ -26,6 +30,19 @@ public class MovePlayer3D : MonoBehaviour
             rb.AddForce(Vector3.up * playerData3D._jumpForce, ForceMode.Impulse);
             isOnGround = false;
         }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            isRunning = true;
+            Run();
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isRunning = false;
+            StopRunning();
+        }
+
     }
 
     void FixedUpdate()
@@ -35,8 +52,8 @@ public class MovePlayer3D : MonoBehaviour
         mouseHorizontal = Input.GetAxis("Mouse X");
         mouseVertical = Input.GetAxis("Mouse Y");
 
-        Vector3 cameraRotation = new Vector3(-mouseVertical, mouseHorizontal, 0);
-        Camera.main.transform.Rotate(cameraRotation * playerData3D._speed);
+        //Vector3 cameraRotation = new Vector3(mouseVertical, mouseHorizontal, 0f);
+        //Camera.main.transform.Rotate(cameraRotation * playerData3D._mouseSensibility * Time.deltaTime);
 
         Vector3 forward = Camera.main.transform.forward;
         Vector3 right = Camera.main.transform.right;
@@ -45,8 +62,8 @@ public class MovePlayer3D : MonoBehaviour
         forward.Normalize();
         right.Normalize();
         Vector3 desiredMoveDirection = forward * axisVertical;
-        rb.transform.Translate(desiredMoveDirection * playerData3D._speed * Time.deltaTime, Space.World);
-        rb.transform.Translate(right * axisHorizontal * playerData3D._speed * Time.deltaTime, Space.World);
+        rb.transform.Translate(desiredMoveDirection * currentSpeed * Time.deltaTime, Space.World);
+        rb.transform.Translate(right * axisHorizontal * currentSpeed * Time.deltaTime, Space.World);
 
         if (desiredMoveDirection != Vector3.zero)
         {
@@ -60,6 +77,25 @@ public class MovePlayer3D : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
+            if (isRunning)
+                Run();
+            else
+                StopRunning();
+        }
+    }
+    private void Run()
+    {
+        if (isOnGround)
+        {
+            currentSpeed = playerData3D._runSpeed;
+        }
+    }
+
+    private void StopRunning()
+    {
+        if (isOnGround)
+        {
+            currentSpeed = playerData3D._walkSpeed;
         }
     }
 }

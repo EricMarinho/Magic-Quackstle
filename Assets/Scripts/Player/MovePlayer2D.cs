@@ -16,6 +16,7 @@ public class MovePlayer2D : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        currentSpeed = playerData2D._walkSpeed;
     }
 
     private void Update()

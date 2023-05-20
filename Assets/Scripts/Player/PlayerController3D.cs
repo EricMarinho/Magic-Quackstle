@@ -3,9 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController3D : MonoBehaviour
+public class PlayerController3D : PlayerController
 {
-
     void Start()
     {
         HideAndLockMouse();
