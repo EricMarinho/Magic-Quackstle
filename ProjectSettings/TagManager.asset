@@ -5,12 +5,15 @@ TagManager:
   serializedVersion: 2
   tags:
   - Ground
-  - Portal
+  - Checkpoint
+  - Interactable
+  - Death
+  - Locked door
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - CameraIgnore
   - Water
   - UI
   - 

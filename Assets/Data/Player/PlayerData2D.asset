@@ -9,9 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a83a98831c9c09046b823bc29428cb9c, type: 3}
+  m_Script: {fileID: 11500000, guid: 5cb792d9650310e478406d7b42fd5f28, type: 3}
   m_Name: PlayerData2D
   m_EditorClassIdentifier: 
-  _walkSpeed: 4
-  _runSpeed: 7
-  _jumpForce: 8
+  _walkSpeed: 8
+  _runSpeed: 12
+  _jumpForce: 11
+  _blinkTime:
+    min: 0.5
+    max: 5
+  _blinkDuration: 0.2
+  _rotateSpeed: 0
+  _mouseSensibility: 0
