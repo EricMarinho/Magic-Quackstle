@@ -12,29 +12,27 @@ namespace Player.Movement
         [HideInInspector] public bool isOnGround = true;
         [HideInInspector] public float currentSpeed;
         [HideInInspector] public bool isRunning = false;
-        [SerializeField] private PlayerAnimationHandler playerAnimationHandler;
-
-        [HideInInspector] public PlayerData playerData;
+        public PlayerAnimationHandler playerAnimationHandler;
+        public PlayerData playerData;
 
         public Action Jump;
 
         private void Awake()
         {
-            playerData = PlayerController.Instance.playerData;
             currentSpeed = playerData._walkSpeed;
         }
 
         private void Update()
         {
 
-            axisHorizontal = Input.GetAxis("Horizontal");
-            playerAnimationHandler.SetAnimatorSpeed(Mathf.Abs(axisHorizontal));
-            
+            axisHorizontal = Input.GetAxis("Horizontal");        
 
             if (Input.GetKeyDown(KeyCode.Space) && isOnGround)
             {
                 playerAnimationHandler.SetIsJumping(isOnGround);
                 isOnGround = false;
+                PlayerController.Instance.PlayJump();
+                PlayerController.Instance.StopRunningAudio();
                 Jump();
             }
 
@@ -57,6 +55,7 @@ namespace Player.Movement
             if (isOnGround)
             {
                 currentSpeed = playerData._runSpeed;
+                PlayerController.Instance.PlayRunningAudio();
             }
         }
 
@@ -66,6 +65,7 @@ namespace Player.Movement
             {
                 currentSpeed = playerData._walkSpeed;
                 playerAnimationHandler.SetAnimatorIsRunning(isRunning);
+                PlayerController.Instance.StopRunningAudio();
             }
         }
 
@@ -73,8 +73,10 @@ namespace Player.Movement
         {
             playerAnimationHandler.SetIsJumping(false);
             isOnGround = true;
-            if (isRunning)
+            if (isRunning) { 
                 Run();
+                PlayerController.Instance.PlayRunningAudio();
+            }
             else
                 StopRunning();
         }

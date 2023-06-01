@@ -2,6 +2,7 @@ using Checkpoint;
 using Constants.PlayerPrefs;
 using System.Collections;
 using System.Collections.Generic;
+using UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -13,10 +14,12 @@ public class PortalHandler : MonoBehaviour, IInteractable
     public void Interact()
     {
         TeleportToDimension();
+
     }
     
     public void TeleportToDimension()
     {
+        UIInteractionHandler.Instance.HideInteractionUI();
         PlayerPrefs.SetString(PlayerPrefsConstants.CONTINUE_GAME_CHECKPOINT, stageToTeleport + "+" + checkpointToTeleport.ToString());
         CheckpointLoader.Instance.SetCheckpoint(checkpointToTeleport);
         StartCoroutine(CheckpointLoader.Instance.FadeOutAndLoadScene(stageToTeleport));

@@ -22,6 +22,9 @@ namespace Player.Movement
         private void FixedUpdate()
         {
             axisVertical = Input.GetAxis("Vertical");
+
+            playerAnimationHandler.SetAnimatorSpeed(Mathf.Abs(axisHorizontal) + Mathf.Abs(axisVertical));
+
             //mouseHorizontal = Input.GetAxis("Mouse X");
             //mouseVertical = Input.GetAxis("Mouse Y");
 
@@ -33,9 +36,9 @@ namespace Player.Movement
             right.y = 0f;
             forward.Normalize();
             right.Normalize();
-            Vector3 desiredMoveDirection = forward * axisVertical;
+
+            Vector3 desiredMoveDirection = forward * axisVertical + right * axisHorizontal;
             rb.transform.Translate(desiredMoveDirection * currentSpeed * Time.deltaTime, Space.World);
-            rb.transform.Translate(right * axisHorizontal * currentSpeed * Time.deltaTime, Space.World);
 
             if (desiredMoveDirection != Vector3.zero)
             {

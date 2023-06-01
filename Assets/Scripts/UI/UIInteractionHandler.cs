@@ -21,9 +21,11 @@ namespace UI
             else
             {
                 Destroy(gameObject);
-                {
-                }
             }
+            DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(interactionUI);
+            if (lockedDoorUI != null)
+                DontDestroyOnLoad(lockedDoorUI);
         }
         #endregion
 

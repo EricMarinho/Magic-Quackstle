@@ -1,3 +1,4 @@
+using Player.Animation;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,6 +17,8 @@ namespace Player.Movement
 
         private void FixedUpdate()
         {
+            playerAnimationHandler.SetAnimatorSpeed(Mathf.Abs(axisHorizontal));
+
             rb.transform.Translate(Vector2.right * axisHorizontal * currentSpeed * Time.deltaTime, Space.World);
             
             if (axisHorizontal < 0)

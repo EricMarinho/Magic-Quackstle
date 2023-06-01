@@ -1012,6 +1012,7 @@ GameObject:
   - component: {fileID: 8653102818647219259}
   - component: {fileID: 8653102817743390651}
   - component: {fileID: 2116169506105258478}
+  - component: {fileID: 4157491620425538889}
   m_Layer: 0
   m_Name: Player2D
   m_TagString: Untagged
@@ -1090,6 +1091,7 @@ MonoBehaviour:
   isOnGround: 1
   currentSpeed: 0
   isRunning: 0
+  playerAnimationHandler: {fileID: 0}
   playerData: {fileID: 0}
 --- !u!114 &8653102818647219259
 MonoBehaviour:
@@ -1107,6 +1109,7 @@ MonoBehaviour:
   currentInteractionObject: {fileID: 0}
   movePlayer: {fileID: 8653102818647219260}
   playerData: {fileID: 11400000, guid: 42398ca2e4cea9443b50f4d35eb4f6fd, type: 2}
+  playerSoundsHandler: {fileID: 0}
 --- !u!114 &8653102817743390651
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,3 +1136,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   eyes: {fileID: 735661711541645133}
+--- !u!114 &4157491620425538889
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8653102818647219398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49554f2ecb6c8cb4cb91649b4dcd2ea8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: 0ac51f69a369cfc46a4a115596875b75, type: 3}
+  deathSound: {fileID: 8300000, guid: 3c31f55dab4019e4ca1a9e99d2772f0c, type: 3}

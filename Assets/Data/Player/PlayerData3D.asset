@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5cb792d9650310e478406d7b42fd5f28, type: 3}
   m_Name: PlayerData3D
   m_EditorClassIdentifier: 
-  _walkSpeed: 6
-  _runSpeed: 8
-  _jumpForce: 7
+  _walkSpeed: 5
+  _runSpeed: 7
+  _jumpForce: 6
   _blinkTime:
     min: 0.5
     max: 5

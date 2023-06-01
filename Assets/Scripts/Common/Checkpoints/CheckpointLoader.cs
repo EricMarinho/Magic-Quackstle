@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Cinemachine;
+using Constants.Stages;
 
 namespace Checkpoint {
     public class CheckpointLoader : MonoBehaviour
@@ -40,7 +41,9 @@ namespace Checkpoint {
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             currentStageCheckpoints = CheckpointHandler.Instance.spawnPointsContainer.GetComponentsInChildren<Transform>();
+            currentCheckpoint = int.Parse(PlayerPrefs.GetString(PlayerPrefsConstants.CONTINUE_GAME_CHECKPOINT, StagesConstants._3D_STAGE_1 + "+1").Split("+")[1]);
             SpawnAtCheckpoint(currentCheckpoint);
+            Time.timeScale = 1f;
         }
 
         public void SpawnAtCheckpoint(int spawnIndex)

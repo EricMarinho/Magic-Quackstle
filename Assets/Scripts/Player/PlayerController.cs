@@ -6,6 +6,7 @@ using Constants.PlayerPrefs;
 using Checkpoint;
 using System;
 using Player.Movement;
+using Player.Audio;
 using UI;
 
 namespace Player
@@ -16,6 +17,7 @@ namespace Player
         [HideInInspector] public GameObject currentInteractionObject;
         public MovePlayer movePlayer;
         public PlayerData playerData;
+        public PlayerSoundsHandler playerSoundsHandler;
 
         #region Singleton
         public static PlayerController Instance;
@@ -30,13 +32,28 @@ namespace Player
             {
                 Destroy(gameObject);
             }
+            
         }
         #endregion
 
         private void Start()
         {
             interactionHandler = GetComponent<InteractionHandler>();
+            HideMouse();
+
         }
+
+        public void HideMouse()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+        public void ShowMouse()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.Confined;
+        }   
 
         public void TriggerEnetered(GameObject interactedObject)
         {
@@ -53,6 +70,7 @@ namespace Player
             else if (interactedObject.CompareTag(TagConstants.DEATH))
             {
                 Die();
+
             }
             else if (interactedObject.CompareTag(TagConstants.LOCKED_DOOR))
             {
@@ -75,7 +93,25 @@ namespace Player
 
         private void Die()
         {
+            movePlayer.isRunning = false;
+            movePlayer.isOnGround = true;
+            playerSoundsHandler.PlayDieSound();
             StartCoroutine(CheckpointLoader.Instance.FadeOutAndRespawn());
+        }
+
+        public void PlayJump()
+        {
+            playerSoundsHandler.PlayJumpSound();
+        }
+
+        public void PlayRunningAudio()
+        {
+            playerSoundsHandler.PlayRunningAudio();
+        }
+
+        public void StopRunningAudio()
+        {
+            playerSoundsHandler.StopRunningAudio();
         }
 
     }
