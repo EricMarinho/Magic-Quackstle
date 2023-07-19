@@ -42,7 +42,15 @@ Also you can also play or download the build version of Magic Quackstle using on
 ## Screenshots
 
 <p align="center">
-  <img src=""/>
+  <img src="https://img.itch.zone/aW1hZ2UvMjA5MzA5Mi8xMjg1MzQyNi5wbmc=/original/lCfqBb.png"/>
+</p>
+
+<p align="center">
+  <img src="https://img.itch.zone/aW1hZ2UvMjA5MzA5Mi8xMjg1MzQyNy5wbmc=/original/9v1JD0.png"/>
+</p>
+
+<p align="center">
+  <img src="https://img.itch.zone/aW1hZ2UvMjA5MzA5Mi8xMjg1MzQyOS5wbmc=/original/OYzO1X.png"/>
 </p>
 
 ## Credits
